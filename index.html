@@ -111,16 +111,39 @@
       margin-bottom: 1.25rem;
     }
 
+    .hero-top {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-photo {
+      width: clamp(100px, 14vw, 160px);
+      height: clamp(100px, 14vw, 160px);
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 0 6px rgba(200,255,0,0.1);
+      flex-shrink: 0;
+    }
+
     .hero-name {
       font-size: clamp(3.5rem, 9vw, 8rem);
       font-weight: 700;
       line-height: 0.95;
       letter-spacing: -0.03em;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0;
     }
 
     .hero-name span {
       color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      .hero-top { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
     }
 
     .hero-tagline {
@@ -711,7 +734,10 @@
   <div class="hero-glow"></div>
 
   <p class="hero-eyebrow reveal">MBA · Product Marketing · San Diego, CA</p>
-  <h1 class="hero-name reveal">Vanessa<br /><span>Bateson.</span></h1>
+  <div class="hero-top reveal">
+    <img src="headshot.png" alt="Vanessa Bateson" class="hero-photo" />
+    <h1 class="hero-name">Vanessa<br /><span>Bateson.</span></h1>
+  </div>
   <p class="hero-tagline reveal">
     MBA graduate specializing in GTM strategy, messaging, and product launches in B2B SaaS.
     I turn complex products into compelling stories.
