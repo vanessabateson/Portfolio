@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vanessa Bateson — Product Marketing & Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg-2: #111111;
+      --bg-3: #181818;
+      --accent: #c8ff00;
+      --accent-dim: rgba(200, 255, 0, 0.12);
+      --text: #f0f0f0;
+      --muted: #888;
+      --border: rgba(255,255,255,0.08);
+      --sans: 'Space Grotesk', sans-serif;
+      --mono: 'Space Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 5vw;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 5vw 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 60%, black 40%, transparent 100%);
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -10%; left: 60%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(200,255,0,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-name {
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name span {
+      color: var(--accent);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: var(--muted);
+      max-width: 540px;
+      font-weight: 400;
+      margin-bottom: 3rem;
+      line-height: 1.5;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0a0a;
+      border: 2px solid var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 5vw;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      writing-mode: vertical-rl;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-scroll::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--muted));
+    }
+
+    /* ── SECTION SHARED ── */
+    section {
+      padding: 7rem 5vw;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .section-number {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 80px;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg); }
+
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+
+    .exp-item::before {
+      content: '';
+      position: absolute;
+      left: -5vw; right: -5vw; top: 0; bottom: 0;
+      background: var(--accent-dim);
+      opacity: 0;
+      transition: opacity 0.25s;
+      pointer-events: none;
+    }
+
+    .exp-item:hover::before { opacity: 1; }
+
+    .exp-meta {
+      padding-top: 0.15rem;
+    }
+
+    .exp-period {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .exp-company {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .exp-role {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .exp-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--bg-2); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      border: 1.5px solid var(--border);
+    }
+
+    .project-card {
+      background: var(--bg-2);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.25s;
+    }
+
+    .project-card:hover { background: var(--bg-3); }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--accent);
+      transition: height 0.3s ease;
+    }
+
+    .project-card:hover::after { height: 100%; }
+
+    .project-category {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-result {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .project-result .stat {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .project-result .stat-label {
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 400;
+    }
+
+    .project-arrow {
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      font-size: 1.25rem;
+      color: var(--border);
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .project-card:hover .project-arrow {
+      color: var(--accent);
+      transform: translate(3px, -3px);
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--bg); }
+
+    .skills-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 3rem;
+    }
+
+    .skill-group-title {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .skill-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .skill-bar-track {
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .skill-bar-fill.animated { transform: scaleX(1); }
+
+    /* ── EXP BULLETS ── */
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .exp-bullets li {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+      top: 0.15em;
+    }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--bg-3); }
+
+    .edu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .edu-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .edu-item:first-child { border-top: 1px solid var(--border); }
+
+    .edu-item::before {
+      content: '';
+      position: absolute;
+      left: -5vw; right: -5vw; top: 0; bottom: 0;
+      background: var(--accent-dim);
+      opacity: 0;
+      transition: opacity 0.25s;
+      pointer-events: none;
+    }
+
+    .edu-item:hover::before { opacity: 1; }
+
+    .edu-period {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      padding-top: 0.15rem;
+    }
+
+    .edu-school {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    .edu-degree {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.02em;
+    }
+
+    .edu-detail {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 3.5rem;
+    }
+
+    .cert-card {
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 2px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .cert-card:hover {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .cert-issuer {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .cert-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    @media (max-width: 700px) {
+      .edu-item { grid-template-columns: 1fr; gap: 0.4rem; }
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--bg-2);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-inner {
+      max-width: 860px;
+    }
+
+    .contact-headline {
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-headline em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .contact-sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 420px;
+      margin-bottom: 3rem;
+      line-height: 1.6;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 5rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .contact-link svg {
+      width: 16px; height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* ── FADE-IN ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .exp-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+
+      .nav-links { display: none; }
+
+      .contact-headline { font-size: 2.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">VB_</a>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+
+  <p class="hero-eyebrow reveal">MBA · Product Marketing · San Diego, CA</p>
+  <h1 class="hero-name reveal">Vanessa<br /><span>Bateson.</span></h1>
+  <p class="hero-tagline reveal">
+    MBA graduate specializing in go-to-market strategy, messaging, and product launches in B2B SaaS.
+    I turn complex products into compelling stories — and those stories into pipeline, retention, and growth.
+  </p>
+  <div class="hero-cta reveal">
+    <a href="#projects" class="btn btn-primary">See My Work</a>
+    <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+  </div>
+
+  <div class="hero-scroll">scroll</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-number">01</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Jun 2025 — Sep 2025</div>
+        <div class="exp-company">Philips</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Product Marketing MBA Intern</div>
+        <ul class="exp-bullets">
+          <li>Facilitated 7 customer conversations extracting insights that informed GTM strategy</li>
+          <li>Strengthened competitive differentiation by improving battle cards and positioning</li>
+          <li>Sourced and analyzed 10 years of market adoption data to inform go-to-market strategy</li>
+          <li>Built a predictive model to forecast performance over the next 5 years</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">GTM Strategy</span>
+          <span class="tag">Competitive Positioning</span>
+          <span class="tag">Market Analysis</span>
+          <span class="tag">Forecasting</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Mar 2025 — Jun 2025</div>
+        <div class="exp-company">CFC</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Product Marketing MBA Intern</div>
+        <ul class="exp-bullets">
+          <li>Crafted technical product marketing content including integrations and scalability</li>
+          <li>Defined buyer persona, roadmap, and launch readiness, growing user base by 3×</li>
+          <li>Outlined a two-year GTM strategy, scaling customer outreach by 5×</li>
+          <li>Designed and distributed 3 surveys to 1,000+ target audience</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">Buyer Personas</span>
+          <span class="tag">Product Launches</span>
+          <span class="tag">Content Marketing</span>
+          <span class="tag">User Research</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Feb 2024 — Aug 2024</div>
+        <div class="exp-company">Carta</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Upmarket Growth Account Manager</div>
+        <ul class="exp-bullets">
+          <li>Achieved 322% to quota for highest monthly revenue in first three months</li>
+          <li>Pioneered largest deal for new AI product in company history at $75K</li>
+          <li>Built sales playbook for 18-person team, upping win rates by 16%</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">Enterprise Sales</span>
+          <span class="tag">Sales Enablement</span>
+          <span class="tag">AI Products</span>
+          <span class="tag">Quota Attainment</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Mar 2022 — Feb 2024</div>
+        <div class="exp-company">Carta</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Account Executive</div>
+        <ul class="exp-bullets">
+          <li>Designed A/B pricing campaign boosting conversion rates by 30%</li>
+          <li>Outperformed quarterly sales quotas by an average of 25%</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">A/B Testing</span>
+          <span class="tag">Pricing Strategy</span>
+          <span class="tag">B2B SaaS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Aug 2020 — Mar 2022</div>
+        <div class="exp-company">Pantheon</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Enterprise Sales Representative</div>
+        <ul class="exp-bullets">
+          <li>Achieved 136% of sales quota in Year 1</li>
+          <li>Improved product positioning through 500+ product demonstrations, increasing inbound leads by 18%</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">Enterprise Sales</span>
+          <span class="tag">Product Positioning</span>
+          <span class="tag">Demand Generation</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-number">02</span>
+    <h2 class="section-title">Case Studies</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-arrow">↗</div>
+      <div class="project-category">Go-to-Market</div>
+      <h3 class="project-title">Enterprise Platform Launch</h3>
+      <p class="project-desc">
+        Orchestrated end-to-end GTM for a new enterprise tier — from ICP definition and
+        competitive differentiation to launch event, PR, and sales training.
+        Aligned 4 departments across a 16-week timeline.
+      </p>
+      <div class="project-result">
+        <div>
+          <div class="stat">$4.2M</div>
+          <div class="stat-label">influenced pipeline in 90 days</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-arrow">↗</div>
+      <div class="project-category">Product Management</div>
+      <h3 class="project-title">Onboarding Redesign</h3>
+      <p class="project-desc">
+        Led discovery, spec-writing, and stakeholder alignment for a full onboarding overhaul.
+        Ran 60 user interviews, synthesized insights into a new interaction model,
+        and partnered with design and engineering through a 3-sprint build cycle.
+      </p>
+      <div class="project-result">
+        <div>
+          <div class="stat">35%</div>
+          <div class="stat-label">reduction in time-to-first-value</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-arrow">↗</div>
+      <div class="project-category">Positioning & Messaging</div>
+      <h3 class="project-title">Category Creation Campaign</h3>
+      <p class="project-desc">
+        Built a new market category narrative from the ground up — research, positioning,
+        messaging architecture, and an integrated content campaign spanning blog, paid,
+        email, and event programming.
+      </p>
+      <div class="project-result">
+        <div>
+          <div class="stat">2.1×</div>
+          <div class="stat-label">organic search growth in 6 months</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-arrow">↗</div>
+      <div class="project-category">Sales Enablement</div>
+      <h3 class="project-title">Competitive Intelligence Program</h3>
+      <p class="project-desc">
+        Built a real-time competitive battlecard system and win/loss interview process
+        from scratch. Trained 30+ AEs on differentiated value messaging and objection handling.
+      </p>
+      <div class="project-result">
+        <div>
+          <div class="stat">+18%</div>
+          <div class="stat-label">competitive win rate improvement</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-arrow">↗</div>
+      <div class="project-category">Growth</div>
+      <h3 class="project-title">Customer Segmentation Model</h3>
+      <p class="project-desc">
+        Designed and implemented a behavioral segmentation framework across 200K+ accounts.
+        Enabled personalized lifecycle campaigns and informed the product roadmap prioritization process.
+      </p>
+      <div class="project-result">
+        <div>
+          <div class="stat">28%</div>
+          <div class="stat-label">lift in email conversion rate</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-arrow">↗</div>
+      <div class="project-category">Product Strategy</div>
+      <h3 class="project-title">Annual Roadmap Planning</h3>
+      <p class="project-desc">
+        Facilitated cross-functional roadmap planning across Product, Design, and Engineering.
+        Created a scoring model to prioritize features against business goals,
+        user needs, and technical feasibility.
+      </p>
+      <div class="project-result">
+        <div>
+          <div class="stat">12</div>
+          <div class="stat-label">features shipped on time in one quarter</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <span class="section-number">03</span>
+    <h2 class="section-title">Skills</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-layout">
+
+    <div class="reveal">
+      <div class="skill-group-title">Product Marketing</div>
+      <ul class="skill-list">
+        <li class="skill-item">
+          <span class="skill-name">GTM Strategy</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.95"></div></div>
+        </li>
+        <li class="skill-item">
+          <span class="skill-name">Messaging & Positioning</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.95"></div></div>
+        </li>
+        <li class="skill-item">
+          <span class="skill-name">Competitive Positioning</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.90"></div></div>
+        </li>
+        <li class="skill-item">
+          <span class="skill-name">Product Launches</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.92"></div></div>
+        </li>
+        <li class="skill-item">
+          <span class="skill-name">Buyer Personas</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.88"></div></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="reveal">
+      <div class="skill-group-title">Product Management</div>
+      <ul class="skill-list">
+        <li class="skill-item">
+          <span class="skill-name">Roadmap Planning</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.85"></div></div>
+        </li>
+        <li class="skill-item">
+          <span class="skill-name">User Research</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.90"></div></div>
+        </li>
+        <li class="skill-item">
+          <span class="skill-name">Cross-Functional Alignment</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.95"></div></div>
+        </li>
+        <li class="skill-item">
+          <span class="skill-name">A/B Testing</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.82"></div></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="reveal">
+      <div class="skill-group-title">Tools & Platforms</div>
+      <ul class="skill-list">
+        <li class="skill-item">
+          <span class="skill-name">Salesforce / HubSpot</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.90"></div></div>
+        </li>
+        <li class="skill-item">
+          <span class="skill-name">Figma / Miro AI</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.80"></div></div>
+        </li>
+        <li class="skill-item">
+          <span class="skill-name">Google Analytics / Jira</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.85"></div></div>
+        </li>
+        <li class="skill-item">
+          <span class="skill-name">Python / Excel</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.72"></div></div>
+        </li>
+        <li class="skill-item">
+          <span class="skill-name">Claude AI</span>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.88"></div></div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header reveal">
+    <span class="section-number">04</span>
+    <h2 class="section-title">Education</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="edu-list">
+
+    <div class="edu-item reveal">
+      <div>
+        <div class="edu-period">2024 — 2026</div>
+        <div class="edu-school">UC San Diego</div>
+      </div>
+      <div>
+        <div class="edu-degree">MBA, Product Innovation & Strategy</div>
+        <div class="edu-detail">Rady School of Management · San Diego, CA</div>
+      </div>
+    </div>
+
+    <div class="edu-item reveal">
+      <div>
+        <div class="edu-period">2014 — 2018</div>
+        <div class="edu-school">NC State University</div>
+      </div>
+      <div>
+        <div class="edu-degree">BA in Psychology</div>
+        <div class="edu-detail">NCAA Division I Track &amp; Field · Raleigh, NC</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cert-grid">
+    <div class="cert-card reveal">
+      <div class="cert-issuer">Udemy · 2025</div>
+      <div class="cert-name">Become a Product Marketing Manager</div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-issuer">University of Pennsylvania · 2024</div>
+      <div class="cert-name">Product Marketing Executive Education</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-header reveal">
+      <span class="section-number">05</span>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <h2 class="contact-headline reveal">Let's build<br />something<br /><em>great.</em></h2>
+
+    <p class="contact-sub reveal">
+      Open to new opportunities, advisory conversations, and interesting problems.
+      Don't hesitate to reach out.
+    </p>
+
+    <div class="contact-links reveal">
+      <a href="mailto:vanessabateson0@gmail.com" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        vanessabateson0@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/vanessabateson" target="_blank" rel="noopener" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/vanessabateson
+      </a>
+      <a href="#" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        San Diego, CA
+      </a>
+      <a href="/resume.pdf" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Download Resume
+      </a>
+    </div>
+
+    <footer>
+      <span>© 2026 Vanessa Bateson</span>
+      <span>Product Marketing · Product Management</span>
+    </footer>
+  </div>
+</section>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+
+          // Animate skill bars when they enter view
+          entry.target.querySelectorAll('.skill-bar-fill').forEach((bar) => {
+            const w = bar.dataset.width;
+            bar.style.width = w * 100 + '%';
+            setTimeout(() => bar.classList.add('animated'), 50);
+          });
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+  // Staggered hero reveals
+  document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.12}s`;
+  });
+</script>
+</body>
+</html>
