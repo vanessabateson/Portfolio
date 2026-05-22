@@ -258,18 +258,19 @@
     /* ── NAV TICKER ── */
     #nav-ticker {
       position: fixed;
+      top: 57px; /* JS overrides with exact nav height */
       left: 0;
       right: 0;
       z-index: 99;
       height: 48px;
-      background: rgba(10,10,10,0.9);
+      background: rgba(10,10,10,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       overflow: hidden;
       display: flex;
       align-items: center;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
     }
 
     .nav-ticker-track {
@@ -290,7 +291,7 @@
       display: flex;
       align-items: center;
       gap: clamp(2.5rem, 5vw, 5rem);
-      padding: 0 clamp(1.5rem, 3vw, 3rem);
+      padding: 0 clamp(2rem, 4vw, 4rem);
     }
 
     .nav-ticker-item {
@@ -298,17 +299,18 @@
       align-items: center;
       cursor: pointer;
       flex-shrink: 0;
+      text-decoration: none;
     }
 
     .nav-ticker-logo {
-      height: 20px;
+      height: 40px;
       width: auto;
       display: block;
       transition: transform 0.2s, filter 0.2s;
     }
 
     .nav-ticker-item:hover .nav-ticker-logo {
-      transform: scale(1.12);
+      transform: scale(1.08);
       filter: drop-shadow(0 0 8px rgba(200, 255, 0, 0.45));
     }
 
@@ -812,38 +814,38 @@
     <!-- Set 1 -->
     <div class="nav-ticker-set">
       <div class="nav-ticker-item" data-target="exp-quantum-metric">
-        <img src="https://logo.clearbit.com/quantummetric.com" alt="Quantum Metric" class="nav-ticker-logo" onerror="this.parentElement.style.display='none'" />
+        <img src="logos/quantum-metric.png" alt="Quantum Metric" class="nav-ticker-logo" />
       </div>
       <div class="nav-ticker-item" data-target="exp-philips">
-        <img src="https://logo.clearbit.com/philips.com" alt="Philips" class="nav-ticker-logo" onerror="this.parentElement.style.display='none'" />
+        <img src="logos/philips.png" alt="Philips" class="nav-ticker-logo" />
       </div>
       <div class="nav-ticker-item" data-target="exp-carta">
-        <img src="https://logo.clearbit.com/carta.com" alt="Carta" class="nav-ticker-logo" onerror="this.parentElement.style.display='none'" />
+        <img src="logos/carta.png" alt="Carta" class="nav-ticker-logo" />
       </div>
       <div class="nav-ticker-item" data-target="exp-r3">
-        <img src="https://logo.clearbit.com/r3.com" alt="R3" class="nav-ticker-logo" onerror="this.parentElement.style.display='none'" />
+        <img src="logos/r3.png" alt="R3" class="nav-ticker-logo" />
       </div>
       <div class="nav-ticker-item" data-target="exp-pantheon">
-        <img src="https://logo.clearbit.com/pantheon.io" alt="Pantheon" class="nav-ticker-logo" onerror="this.parentElement.style.display='none'" />
+        <img src="logos/pantheon.png" alt="Pantheon" class="nav-ticker-logo" />
       </div>
     </div>
 
     <!-- Set 2 — duplicate for seamless loop -->
     <div class="nav-ticker-set" aria-hidden="true">
       <div class="nav-ticker-item" data-target="exp-quantum-metric">
-        <img src="https://logo.clearbit.com/quantummetric.com" alt="" class="nav-ticker-logo" onerror="this.parentElement.style.display='none'" />
+        <img src="logos/quantum-metric.png" alt="" class="nav-ticker-logo" />
       </div>
       <div class="nav-ticker-item" data-target="exp-philips">
-        <img src="https://logo.clearbit.com/philips.com" alt="" class="nav-ticker-logo" onerror="this.parentElement.style.display='none'" />
+        <img src="logos/philips.png" alt="" class="nav-ticker-logo" />
       </div>
       <div class="nav-ticker-item" data-target="exp-carta">
-        <img src="https://logo.clearbit.com/carta.com" alt="" class="nav-ticker-logo" onerror="this.parentElement.style.display='none'" />
+        <img src="logos/carta.png" alt="" class="nav-ticker-logo" />
       </div>
       <div class="nav-ticker-item" data-target="exp-r3">
-        <img src="https://logo.clearbit.com/r3.com" alt="" class="nav-ticker-logo" onerror="this.parentElement.style.display='none'" />
+        <img src="logos/r3.png" alt="" class="nav-ticker-logo" />
       </div>
       <div class="nav-ticker-item" data-target="exp-pantheon">
-        <img src="https://logo.clearbit.com/pantheon.io" alt="" class="nav-ticker-logo" onerror="this.parentElement.style.display='none'" />
+        <img src="logos/pantheon.png" alt="" class="nav-ticker-logo" />
       </div>
     </div>
 
