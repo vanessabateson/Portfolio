@@ -252,6 +252,78 @@
       max-width: 80px;
     }
 
+    /* ── COMPANIES TICKER ── */
+    #companies {
+      padding: 2.5rem 0;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .companies-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .ticker-wrapper {
+      overflow: hidden;
+      width: 100%;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+
+    .ticker-track {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      animation: ticker 28s linear infinite;
+    }
+
+    .ticker-track.paused { animation-play-state: paused; }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .ticker-set {
+      display: flex;
+      align-items: center;
+      gap: clamp(3rem, 6vw, 6rem);
+      padding: 0 clamp(1.5rem, 3vw, 3rem);
+    }
+
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .ticker-logo {
+      height: clamp(24px, 3.2vw, 34px);
+      width: auto;
+      display: block;
+      transition: transform 0.25s, filter 0.25s;
+    }
+
+    .ticker-item:hover .ticker-logo {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 10px rgba(200, 255, 0, 0.4));
+    }
+
+    .exp-item.exp-highlight::before { opacity: 1; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-track { animation: none; }
+    }
+
     /* ── EXPERIENCE ── */
     #experience { background: var(--bg); }
 
@@ -569,11 +641,22 @@
       font-size: 0.88rem;
     }
 
+    .cert-heading {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 4rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
     .cert-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1rem;
-      margin-top: 3.5rem;
+      margin-top: 1.25rem;
     }
 
     .cert-card {
@@ -750,6 +833,54 @@
   <div class="hero-scroll">scroll</div>
 </section>
 
+<!-- COMPANIES TICKER -->
+<section id="companies">
+  <p class="companies-label">Experience at</p>
+  <div class="ticker-wrapper" id="tickerWrapper">
+    <div class="ticker-track" id="tickerTrack">
+
+      <!-- Set 1 -->
+      <div class="ticker-set">
+        <div class="ticker-item" data-target="exp-quantum-metric">
+          <img src="https://logo.clearbit.com/quantummetric.com" alt="Quantum Metric" class="ticker-logo" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="ticker-item" data-target="exp-philips">
+          <img src="https://logo.clearbit.com/philips.com" alt="Philips" class="ticker-logo" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="ticker-item" data-target="exp-carta">
+          <img src="https://logo.clearbit.com/carta.com" alt="Carta" class="ticker-logo" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="ticker-item" data-target="exp-r3">
+          <img src="https://logo.clearbit.com/r3.com" alt="R3" class="ticker-logo" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="ticker-item" data-target="exp-pantheon">
+          <img src="https://logo.clearbit.com/pantheon.io" alt="Pantheon" class="ticker-logo" onerror="this.parentElement.style.display='none'" />
+        </div>
+      </div>
+
+      <!-- Set 2 — duplicate for seamless loop -->
+      <div class="ticker-set" aria-hidden="true">
+        <div class="ticker-item" data-target="exp-quantum-metric">
+          <img src="https://logo.clearbit.com/quantummetric.com" alt="" class="ticker-logo" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="ticker-item" data-target="exp-philips">
+          <img src="https://logo.clearbit.com/philips.com" alt="" class="ticker-logo" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="ticker-item" data-target="exp-carta">
+          <img src="https://logo.clearbit.com/carta.com" alt="" class="ticker-logo" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="ticker-item" data-target="exp-r3">
+          <img src="https://logo.clearbit.com/r3.com" alt="" class="ticker-logo" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="ticker-item" data-target="exp-pantheon">
+          <img src="https://logo.clearbit.com/pantheon.io" alt="" class="ticker-logo" onerror="this.parentElement.style.display='none'" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-header reveal">
@@ -760,7 +891,7 @@
 
   <div class="exp-list">
 
-    <div class="exp-item reveal">
+    <div class="exp-item reveal" id="exp-philips">
       <div class="exp-meta">
         <div class="exp-period">Jun 2025 — Sep 2025</div>
         <div class="exp-company">Philips</div>
@@ -782,7 +913,7 @@
       </div>
     </div>
 
-    <div class="exp-item reveal">
+    <div class="exp-item reveal" id="exp-quantum-metric">
       <div class="exp-meta">
         <div class="exp-period">Mar 2025 — Jun 2025</div>
         <div class="exp-company">CFC</div>
@@ -804,7 +935,7 @@
       </div>
     </div>
 
-    <div class="exp-item reveal">
+    <div class="exp-item reveal" id="exp-carta">
       <div class="exp-meta">
         <div class="exp-period">Feb 2024 — Aug 2024</div>
         <div class="exp-company">Carta</div>
@@ -844,7 +975,7 @@
       </div>
     </div>
 
-    <div class="exp-item reveal">
+    <div class="exp-item reveal" id="exp-r3">
       <div class="exp-meta">
         <div class="exp-period">Aug 2020 — Mar 2022</div>
         <div class="exp-company">R3</div>
@@ -864,7 +995,7 @@
       </div>
     </div>
 
-    <div class="exp-item reveal">
+    <div class="exp-item reveal" id="exp-pantheon">
       <div class="exp-meta">
         <div class="exp-period">Feb 2019 — Aug 2020</div>
         <div class="exp-company">Pantheon</div>
@@ -1120,6 +1251,8 @@
 
   </div>
 
+  <p class="cert-heading reveal">Certifications</p>
+
   <div class="cert-grid">
     <div class="cert-card reveal">
       <div class="cert-issuer">Udemy · 2025</div>
@@ -1200,6 +1333,40 @@
   document.querySelectorAll('#hero .reveal').forEach((el, i) => {
     el.style.transitionDelay = `${i * 0.12}s`;
   });
+
+  // Logo ticker
+  (function () {
+    const track   = document.getElementById('tickerTrack');
+    const wrapper = document.getElementById('tickerWrapper');
+    if (!track || !wrapper) return;
+
+    let clickPaused = false;
+
+    wrapper.addEventListener('mouseenter', () => track.classList.add('paused'));
+    wrapper.addEventListener('mouseleave', () => {
+      if (!clickPaused) track.classList.remove('paused');
+    });
+
+    document.querySelectorAll('.ticker-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const target = document.getElementById(item.dataset.target);
+
+        track.classList.add('paused');
+        clickPaused = true;
+
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target.classList.add('exp-highlight');
+          setTimeout(() => target.classList.remove('exp-highlight'), 1800);
+        }
+
+        setTimeout(() => {
+          clickPaused = false;
+          track.classList.remove('paused');
+        }, 3500);
+      });
+    });
+  })();
 </script>
 </body>
 </html>
